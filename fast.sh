@@ -18,6 +18,7 @@ sub_help() {
     echo "  gateway: Start local gateway"
     echo "  ios_reset: Reset iOS"
     echo "  deep_link: Deep link to booted sim"
+    echo "  mark_personal: mark this git repo as personal"
 }
 
 sub_commit() {
@@ -94,6 +95,11 @@ sub_deep_link() {
     echo -e "${BLUE}Deep linking${NC}"
     read -p $'\e[33mEnter deep link: \e[0m' link
     xcrun simctl openurl booted "gopuff://$link"
+}
+
+sub_mark_personal() {
+    echo -e "${BLUE}Marking repo as personal${NC}"
+    git config core.sshCommand "ssh -F ~/.ssh/config-personal"
 }
 
 case $subcommand in
